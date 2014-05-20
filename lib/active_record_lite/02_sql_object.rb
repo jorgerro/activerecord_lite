@@ -1,27 +1,38 @@
 require_relative 'db_connection'
-require_relative '01_mass_object'
-require_relative '00_attr_accessor_object'
+# require_relative '01_mass_object'
+# require_relative '00_attr_accessor_object'
 require 'active_support/inflector'
 require "sqlite3"
 
-class MassObject < AttrAccessorObject
+# class MassObject < AttrAccessorObject
+#
+#
+#
+#   def self.parse_all(results)
+#
+#     new_objects = []
+#
+#     results.each do |hash|
+#       new_objects << self.new(hash)
+#     end
+#     new_objects
+#   end
+#
+#
+# end
+
+class SQLObject #< MassObject
 
 
+    def self.parse_all(results)
 
-  def self.parse_all(results)
+      new_objects = []
 
-    new_objects = []
-
-    results.each do |hash|
-      new_objects << self.new(hash)
+      results.each do |hash|
+        new_objects << self.new(hash)
+      end
+      new_objects
     end
-    new_objects
-  end
-
-
-end
-
-class SQLObject < MassObject
 
 
   def self.my_attr_accessor(*names)
