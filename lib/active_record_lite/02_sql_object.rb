@@ -42,9 +42,10 @@ class SQLObject < MassObject
 
 
   def self.columns
-    db = SQLite3::Database.new "#{table_name}.db"
-    db.results_as_hash = true
-    cols = db.execute2("SELECT * FROM #{table_name}")[0].map(&:to_sym)
+    # db = SQLite3::Database.new "#{table_name}.db"
+    # db = DBConnection.new
+    # db.results_as_hash = true
+    cols = DBConnection.execute2("SELECT * FROM #{table_name}")[0].map(&:to_sym)
     cols.each do |col|
       my_attr_accessor(col)
     end
@@ -145,9 +146,5 @@ class SQLObject < MassObject
   def col_names
     @attributes.keys.map(&:to_s)
   end
-
-
-
-
 
 end
