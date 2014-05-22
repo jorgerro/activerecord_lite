@@ -110,7 +110,6 @@ class SQLObject #< MassObject
   end
 
   def update
-    question_marks = (["?"] * col_names.length).join(", ")
     set_string = col_names[1..-1].map do |col_name|
       "#{col_name} = ?"
     end
